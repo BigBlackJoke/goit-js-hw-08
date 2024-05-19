@@ -64,8 +64,6 @@ const images = [
   },
 ];
 
-const instance = basicLightbox.create(document.querySelector('#template'));
-
 const imagesList = document.querySelector(".gallery");
 
 const gallery = images.map(image => {
@@ -85,7 +83,11 @@ imagesList.append(...gallery);
 imagesList.addEventListener("click", event => {
     event.preventDefault();
     if (event.target.nodeName === 'IMG') {
-        console.log(event.target.parentElement.href);
+        const bigImage = event.target.parentElement.href;
+        const instance = basicLightbox.create(`
+            <img src="${bigImage}" width="800" height="600">
+        `);
+        instance.show();
     }
 });
 
