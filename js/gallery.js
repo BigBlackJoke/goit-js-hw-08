@@ -85,8 +85,7 @@ imagesList.addEventListener("click", event => {
     if (event.target.nodeName === 'IMG') {
         const bigImage = event.target.parentElement.href;
         const instance = basicLightbox.create(`
-            <img src="${bigImage}" width="800" height="600">
-        `);
+            <img src="${bigImage}" width="1112" height="640">`);
         instance.show();
     }
 });
