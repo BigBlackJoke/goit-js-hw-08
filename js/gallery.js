@@ -64,21 +64,29 @@ const images = [
   },
 ];
 
+const instance = basicLightbox.create(document.querySelector('#template'));
 
 const imagesList = document.querySelector(".gallery");
-const imagesListItem = document.querySelector(".gallery-item");
-const bigImage = document.querySelector(".gallery-link");
-const originalImage = document.querySelector(".gallery-image");
 
 const gallery = images.map(image => {
     const list = document.createElement('li');
+    const a = document.createElement('a');
     const img = document.createElement('img');
+    a.href = image.original;
     img.src = image.preview;
     img.alt = image.description;
-    // bigImage.href = image.original;
-    // originalImage.children[1] = bigImage.href;
-    list.appendChild(img);
+    a.appendChild(img);
+    list.appendChild(a);
     return list;
 });
 
 imagesList.append(...gallery);
+
+imagesList.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.nodeName === 'IMG') {
+        console.log(event.target.parentElement.href);
+    }
+});
+
+
